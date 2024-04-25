@@ -1,7 +1,9 @@
-const form = document.getElementById('form');
-const convertButton = document.getElementById('convert-btn');
-const output = document.getElementById('output');
+//JS code for roman numeral conversion
+const form = document.getElementById('form');//form element
+const convertButton = document.getElementById('convert-btn');//convert button
+const output = document.getElementById('output');//output div for displaying result
 
+//function to convert decimal number to roman numeral
 const convertToRoman = num => {
   const ref = [
     ['M', 1000],
@@ -30,6 +32,7 @@ const convertToRoman = num => {
   return result.join('');
 };
 
+//function to validate input number
 const isValid = (str, int) => {
   let alertText = '';
 
@@ -51,29 +54,33 @@ const isValid = (str, int) => {
   return false;
 };
 
+//function to clear output and reset styling
 const clearOutput = () => {
   output.innerText = '';
   output.classList.remove('alert');
 };
 
+//event listener for form submission
 form.addEventListener('submit', e => {
-  e.preventDefault();
-  updateUI();
+  e.preventDefault(); // prevent default form submission behaviour
+  updateUI();// update UI with conversion result
 });
 
+//event listener for convert button click
 convertButton.addEventListener('click', () => {
-  updateUI();
+  updateUI(); // update UI with conversion result
 });
 
+//function to update UI with conversion result
 const updateUI = () => {
-  const numStr = document.getElementById('number').value;
-  const int = parseInt(numStr, 10);
+  const numStr = document.getElementById('number').value; //get input number as string
+  const int = parseInt(numStr, 10); //convert input string to integer
 
-  output.classList.remove('hidden');
+  output.classList.remove('hidden'); // remove 'hidden' class to display output div
 
-  clearOutput();
+  clearOutput(); // clear previous output and reset styling
 
   if (isValid(numStr, int)) {
-    output.innerText = convertToRoman(int);
+    output.innerText = convertToRoman(int); // display converter roman numeral in output div
   }
 };
